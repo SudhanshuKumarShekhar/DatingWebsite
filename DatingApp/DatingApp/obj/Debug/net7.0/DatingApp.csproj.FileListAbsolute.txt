@@ -86,3 +86,4 @@ C:\Users\sudhanshu\Downloads\Dating_Website\DatingApp\DatingApp\obj\Debug\net7.0
 C:\Users\sudhanshu\Downloads\Dating_Website\DatingApp\DatingApp\obj\Debug\net7.0\DatingApp.pdb
 C:\Users\sudhanshu\Downloads\Dating_Website\DatingApp\DatingApp\obj\Debug\net7.0\DatingApp.genruntimeconfig.cache
 C:\Users\sudhanshu\Downloads\Dating_Website\DatingApp\DatingApp\obj\Debug\net7.0\ref\DatingApp.dll
+C:\Users\sudhanshu\Downloads\Dating_Website\DatingApp\DatingApp\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
