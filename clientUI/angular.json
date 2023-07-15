@@ -23,8 +23,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/font-awesome/css/font-awesome.css",
               "src/styles.css"
             ],
@@ -102,6 +100,6 @@
     }
   },
   "cli": {
-    "analytics": "8ed7f8ed-cab5-4112-86a2-a25116eaac0c"
+    "analytics": "bc9bb2a0-5cda-468c-a416-36f21ff5b789"
   }
 }
