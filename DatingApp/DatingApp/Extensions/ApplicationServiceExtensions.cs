@@ -16,7 +16,7 @@ namespace DatingApp.Extensions
             options.UseSqlServer(config.GetConnectionString("connectionString"))
             );
             //add core here
-            // services.AddCors();
+            services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
