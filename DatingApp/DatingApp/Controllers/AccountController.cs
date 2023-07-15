@@ -1,6 +1,7 @@
 ﻿using DatingApp.Data;
 using DatingApp.DTOs;
 using DatingApp.Interfaces;
+using DatingApp.IRepository;
 using DatingApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,12 +12,12 @@ namespace DatingApp.Controllers
 {
     public class AccountController : BaseApiController
     {
-        private readonly DataContext context;
+        private readonly IAccountRepository accountRepository;
         private readonly ITokenService tokenService;
 
-        public AccountController(DataContext context, ITokenService tokenService)
+        public AccountController(IAccountRepository accountRepository, ITokenService tokenService)
         {
-            this.context = context;
+            this.accountRepository = accountRepository;
             this.tokenService = tokenService;
         }
 
@@ -31,9 +32,8 @@ namespace DatingApp.Controllers
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
             };
-
-            context.Users.Add(user);
-            await context.SaveChangesAsync();
+            
+              user = await accountRepository.AddUser(user);
             return new UserDto
             {
                 Username = user.UserName,
@@ -44,7 +44,7 @@ namespace DatingApp.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
-            var user = await context.Users.FirstOrDefaultAsync(x => x.UserName == loginDto.Username);
+            var user = await accountRepository.FindUserByUsername(loginDto.Username);
             if (user == null) return Unauthorized();
 
             using var hmac = new HMACSHA512(user.PasswordSalt);
@@ -63,7 +63,7 @@ namespace DatingApp.Controllers
         }
         private async Task<bool> UserExists(string username)
         {
-            return await context.Users.AnyAsync(x=> x.UserName == username.ToLower());
+            return await accountRepository.IsUserExists(username);
         }
     }
 }
